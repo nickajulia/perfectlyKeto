@@ -19,7 +19,19 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/webhook', (req, res) => {
-    console.log(req.query);
+    let userManuallyInputText = req.query['last user freeform input'];
+    if (userManuallyInputText) {
+        var request2 = app.textRequest(userManuallyInputText, {
+            sessionId: 'acsdaeaweqweqwe'
+        });
+        request2.on('response', function(response) {
+            console.log(response);
+        });
+
+        request2.on('error', function(error) {
+            console.log(error);
+        });
+    }
     res.sendStatus(200)
 
 });
