@@ -27,6 +27,14 @@ app.get('/webhook', (req, res) => {
         });
         request2.on('response', function(response) {
             console.log(response);
+            let result = response.result;
+            if (result && result.status && result.status.errorType == 'success' && result.metadata && result.metadata.intentName == 'food.diet') {
+                //food
+                console.log('FOOD <3')
+            } else {
+                //not food
+                console.log('not FOOD <3')
+            }
         });
 
         request2.on('error', function(error) {
