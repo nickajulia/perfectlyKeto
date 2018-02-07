@@ -20,6 +20,7 @@ const app = express();
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/webhook', (req, res) => {
     console.log(req);
+    res.sendStatus(200)
 
 });
 
