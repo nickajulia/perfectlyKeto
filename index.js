@@ -21,7 +21,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
     if (userManuallyInputText) {
-        var request2 = app.textRequest(userManuallyInputText, {
+        var request2 = apiApp.textRequest(userManuallyInputText, {
             sessionId: 'acsdaeaweqweqwe'
         });
         request2.on('response', function(response) {
