@@ -20,9 +20,10 @@ const app = express();
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
+    let messengerId = req.query['messenger user id'];
     if (userManuallyInputText) {
         var request2 = apiApp.textRequest(userManuallyInputText, {
-            sessionId: 'acsdaeaweqweqwe'
+            sessionId: messengerId
         });
         request2.on('response', function(response) {
             console.log(response);
