@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const redis = require("redis");
 const client = redis.createClient(process.env.REDIS_URL);
 ///DIALOG FLOW INIT
-var apiai = require('apiai');
-var app = apiai(process.env.ACCESS_TOKEN_APIAI);
+let apiai = require('apiai');
+let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 
 
 ///END DIALOG FLOW
