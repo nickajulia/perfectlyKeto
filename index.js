@@ -9,8 +9,18 @@ let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 
 
 ///END DIALOG FLOW
+var doc = new GoogleSpreadsheet('1d9kwRJ9llkJ2mkHPGNgJbSjJUOL1MXL8rNX9o8YthPQ');
+async.series([
+    function setAuth(step) {
 
+        var creds_json = {
+            client_email: process.env.CLIENT_EMAIL_G_SHEETS,
+            private_key: process.env.PRIVATE_KEY_G_SHEETS
+        }
 
+        doc.useServiceAccountAuth(creds_json, step);
+    }
+]);
 
 const app = express();
 
