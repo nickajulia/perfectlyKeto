@@ -29,6 +29,7 @@ const allData = [];
 
 app.get('/', (req, res) => {
     doc.getRows(1, function(err, rows) {
+        console.log(err)
         console.log(rows)
     })
     res.send('Updated!')
