@@ -31,6 +31,8 @@ app.get('/webhook', (req, res) => {
         request2.on('error', function(error) {
             console.log(error);
         });
+        request2.end();
+
     }
     res.sendStatus(200)
 
