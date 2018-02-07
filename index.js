@@ -24,11 +24,14 @@ async.series([
 ]);
 
 const app = express();
+const allData = [];
 
-
-
-
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => {
+    doc.getRows(1, function(err, rows) {
+        console.log(rows)
+    })
+    res.send('Updated!')
+});
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
     let messengerId = req.query['messenger user id'];
