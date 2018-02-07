@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 const redis = require("redis");
+var async = require('async');
 const client = redis.createClient(process.env.REDIS_URL);
 ///DIALOG FLOW INIT
 let apiai = require('apiai');
