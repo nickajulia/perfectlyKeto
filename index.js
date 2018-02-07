@@ -26,9 +26,9 @@ app.get('/webhook', (req, res) => {
             sessionId: messengerId
         });
         request2.on('response', function(response) {
-            console.log(response);
+            //console.log(response);
             let result = response.result;
-            if (result && result.status && result.status.errorType == 'success' && result.metadata && result.metadata.intentName == 'food.diet') {
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName == 'food.diet') {
                 //food
                 console.log('FOOD <3')
             } else {
