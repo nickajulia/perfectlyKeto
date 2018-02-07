@@ -12,7 +12,6 @@ let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 ///END DIALOG FLOW
 var GoogleSpreadsheet = require('google-spreadsheet');
 var doc = new GoogleSpreadsheet('1d9kwRJ9llkJ2mkHPGNgJbSjJUOL1MXL8rNX9o8YthPQ');
-var sheet;
 
 async.series([
     function setAuth(step) {
@@ -30,7 +29,7 @@ const app = express();
 const allData = [];
 
 app.get('/', (req, res) => {
-    sheet.getRows(1, function(err, rows) {
+    doc.getRows(1, function(err, rows) {
         console.log('Read ' + rows.length + ' rows');
 
     })
