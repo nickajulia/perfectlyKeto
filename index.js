@@ -28,7 +28,7 @@ app.get('/webhook', (req, res) => {
         request2.on('response', function(response) {
             console.log(response);
             let result = response.result;
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName == 'food.diet') {
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
                 //food
                 console.log('FOOD <3')
             } else {
