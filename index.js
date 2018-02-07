@@ -28,7 +28,7 @@ const app = express();
 const allData = [];
 
 app.get('/', (req, res) => {
-    doc.getRows(1, function(err, rows) {
+    doc.getRows(function(err, rows) {
         console.log(err)
         console.log(rows)
     })
