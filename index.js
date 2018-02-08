@@ -24,14 +24,14 @@ async.series([
 
         doc.useServiceAccountAuth(creds_json, step);
     },
-    function getInfoAndWorksheets(step) {
-        doc.getInfo(function(err, info) {
-            console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
-            sheet = info.worksheets[0];
-            console.log('sheet 1: ' + sheet.title + ' ' + sheet.rowCount + 'x' + sheet.colCount);
-            step();
-        });
-    },
+    // function getInfoAndWorksheets(step) {
+    //     doc.getInfo(function(err, info) {
+    //         console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
+    //         sheet = info.worksheets[0];
+    //         console.log('sheet 1: ' + sheet.title + ' ' + sheet.rowCount + 'x' + sheet.colCount);
+    //         step();
+    //     });
+    // },
 
 ]);
 
