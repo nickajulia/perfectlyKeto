@@ -9,7 +9,7 @@ let apiai = require('apiai');
 let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 
 const app = express();
-
+const sheet;
 ///END DIALOG FLOW
 var GoogleSpreadsheet = require('google-spreadsheet');
 var doc = new GoogleSpreadsheet('1d9kwRJ9llkJ2mkHPGNgJbSjJUOL1MXL8rNX9o8YthPQ');
@@ -23,7 +23,16 @@ async.series([
         }
 
         doc.useServiceAccountAuth(creds_json, step);
-    }
+    },
+    function getInfoAndWorksheets(step) {
+        doc.getInfo(function(err, info) {
+            console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
+            sheet = info.worksheets[0];
+            console.log('sheet 1: ' + sheet.title + ' ' + sheet.rowCount + 'x' + sheet.colCount);
+            step();
+        });
+    },
+
 ]);
 
 const allData = [];
