@@ -29,7 +29,7 @@ async.series([
 const allData = [];
 
 app.get('/', (req, res) => {
-    doc.getRows(1, function(err, rows) {
+    doc.getRows(1, {}, function(err, rows) {
         console.log('Read ' + rows.length + ' rows');
 
     })
