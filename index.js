@@ -55,7 +55,7 @@ app.get('/webhook', (req, res) => {
         });
         request2.on('response', function(response) {
             console.log(response);
-            let result = response.result;
+            let result = response.result['mealType'];
             //change this to accomodate changes..
             if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
                 //food
