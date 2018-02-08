@@ -65,16 +65,21 @@ app.get('/webhook', (req, res) => {
             //change this to accomodate changes..
             if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
                 //food
-                res.json({
-                    "messages": [
-                        { "text": result.fulfillment.speech },
-                    ]
-                });
+                if (result.fulfillment.speech != '') {
+                    res.json({
+                        "messages": [
+                            { "text": result.fulfillment.speech },
+                        ]
+                    });
+                } else {
+                    res.json({
+                        "redirect_to_blocks": ["Not sure"]
+                    });
+                }
+
             } else {
                 res.json({
-                    "messages": [
-                        { "text": 'I am not quite sure whether this is on the diet or not.' },
-                    ]
+                    "redirect_to_blocks": ["Not sure"]
                 });
             }
         });
