@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
         console.log('Read ' + rows + ' rows');
         if (rows) {
             for (let i = 0; i < rows.length; i++) {
-                console.log(rows[i]);
+                console.log(rows[i]['mealtype']);
             }
         }
 
