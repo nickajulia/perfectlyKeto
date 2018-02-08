@@ -70,6 +70,12 @@ app.get('/webhook', (req, res) => {
                         { "text": result.metadata.fulfillment.speech },
                     ]
                 });
+            } else {
+                res.json({
+                    "messages": [
+                        { "text": 'I am not quite sure whether this is on the diet or not.' },
+                    ]
+                });
             }
         });
 
