@@ -67,7 +67,7 @@ app.get('/webhook', (req, res) => {
                 //food
                 res.json({
                     "messages": [
-                        { "text": result.metadata.fulfillment },
+                        { "text": result.metadata.fulfillment.speech },
                     ]
                 });
             }
