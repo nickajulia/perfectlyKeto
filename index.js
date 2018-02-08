@@ -35,19 +35,23 @@ async.series([
 
 ]);
 
-const allData = [];
+let allData = [];
 
 app.get('/', (req, res) => {
     doc.getRows(1, {}, function(err, rows) {
         console.log('Read ' + rows + ' rows');
         if (rows) {
+            allData = []
             for (let i = 0; i < rows.length; i++) {
-                console.log(rows[i]['mealtype']);
+                allData.push({
+                    mealName: rows[i]['mealtype'],
+                    partofdiet: rows[i]['partofdiet']
+                });
             }
         }
 
     })
-    res.send('Updated!')
+    res.send('Updated!');
 });
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
