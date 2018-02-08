@@ -63,16 +63,13 @@ app.get('/webhook', (req, res) => {
             console.log(response);
             let result = response.result;
             //change this to accomodate changes..
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.fulfillment) {
                 //food
                 res.json({
-                    "redirect_to_blocks": ["Part of the diet"]
+                    "messages": [
+                        { "text": result.metadata.fulfillment },
+                    ]
                 });
-            } else {
-                //not food
-                res.json({
-                    "redirect_to_blocks": ["Not part of the diet"]
-                })
             }
         });
 
