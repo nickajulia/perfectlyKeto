@@ -78,11 +78,14 @@ app.get('/webhook', (req, res) => {
 
         request2.on('error', function(error) {
             console.log(error);
+            res.sendStatus({
+                "redirect_to_blocks": ["Not sure"]
+            })
+
         });
         request2.end();
 
     }
-    res.sendStatus(200)
 
 });
 
