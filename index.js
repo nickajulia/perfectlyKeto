@@ -9,10 +9,10 @@ let apiai = require('apiai');
 let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 
 const app = express();
-const sheet;
 ///END DIALOG FLOW
 var GoogleSpreadsheet = require('google-spreadsheet');
 var doc = new GoogleSpreadsheet('1d9kwRJ9llkJ2mkHPGNgJbSjJUOL1MXL8rNX9o8YthPQ');
+const sheet;
 
 async.series([
     function setAuth(step) {
