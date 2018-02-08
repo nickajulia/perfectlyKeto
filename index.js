@@ -19,7 +19,7 @@ async.series([
 
         var creds_json = {
             client_email: process.env.CLIENT_EMAIL_G_SHEETS,
-            private_key: process.env.PRIVATE_KEY_G_SHEETS
+            private_key: process.env.GOOGLE_PRIVATE_KEY
         }
 
         doc.useServiceAccountAuth(creds_json, step);
