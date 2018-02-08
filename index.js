@@ -40,9 +40,12 @@ const allData = [];
 app.get('/', (req, res) => {
     doc.getRows(1, {}, function(err, rows) {
         console.log('Read ' + rows + ' rows');
-        for (let i = 0; i < rows.length; i++) {
-            console.log(rows[i]);
+        if (rows) {
+            for (let i = 0; i < rows.length; i++) {
+                console.log(rows[i]['mealType']);
+            }
         }
+
     })
     res.send('Updated!')
 });
