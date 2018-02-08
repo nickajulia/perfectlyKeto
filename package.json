@@ -19,6 +19,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "google-spreadsheet": "^2.0.4",
+    "hashmap": "^2.3.0",
     "redis": "^2.8.0",
     "request": "^2.83.0"
   }

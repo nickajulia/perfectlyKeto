@@ -3,6 +3,8 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const redis = require("redis");
 var async = require('async');
+var HashMap = require('hashmap');
+
 const client = redis.createClient(process.env.REDIS_URL);
 ///DIALOG FLOW INIT
 let apiai = require('apiai');
@@ -35,18 +37,15 @@ async.series([
 
 ]);
 
-let allData = [];
+var map = new HashMap();
 
 app.get('/', (req, res) => {
     doc.getRows(1, {}, function(err, rows) {
-        console.log('Read ' + rows + ' rows');
+        //console.log('Read ' + rows + ' rows');
         if (rows) {
-            allData = []
+            map.clear();
             for (let i = 0; i < rows.length; i++) {
-                allData.push({
-                    mealName: rows[i]['mealtype'],
-                    partofdiet: rows[i]['partofdiet']
-                });
+                map.set(rows[i]['mealtype'], rows[i]['partofdiet']);
             }
         }
 
@@ -66,10 +65,14 @@ app.get('/webhook', (req, res) => {
             //change this to accomodate changes..
             if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
                 //food
-                console.log('FOOD <3')
+                res.json({
+                    "redirect_to_blocks": ["Part of the diet"]
+                });
             } else {
                 //not food
-                console.log('not FOOD <3')
+                res.json({
+                    "redirect_to_blocks": ["Not part of the diet"]
+                })
             }
         });
 
