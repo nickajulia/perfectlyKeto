@@ -8,6 +8,7 @@ const client = redis.createClient(process.env.REDIS_URL);
 let apiai = require('apiai');
 let apiApp = apiai(process.env.ACCESS_TOKEN_APIAI);
 
+const app = express();
 
 ///END DIALOG FLOW
 var GoogleSpreadsheet = require('google-spreadsheet');
@@ -25,7 +26,6 @@ async.series([
     }
 ]);
 
-const app = express();
 const allData = [];
 
 app.get('/', (req, res) => {
@@ -45,6 +45,7 @@ app.get('/webhook', (req, res) => {
         request2.on('response', function(response) {
             console.log(response);
             let result = response.result;
+            //change this to accomodate changes..
             if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
                 //food
                 console.log('FOOD <3')
