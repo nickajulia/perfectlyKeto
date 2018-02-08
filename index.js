@@ -80,4 +80,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.listen(process.env.PORT, () => console.log('App started!'));\
+app.listen(process.env.PORT, () => console.log('App started!'));
