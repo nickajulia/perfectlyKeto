@@ -30,7 +30,7 @@ const allData = [];
 
 app.get('/', (req, res) => {
     doc.getRows('sheet1', {}, function(err, rows) {
-        console.log('Read ' + err + ' rows');
+        console.log('Read ' + rows + ' rows');
 
     })
     res.send('Updated!')
