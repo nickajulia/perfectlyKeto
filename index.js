@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
     doc.getRows(1, {}, function(err, rows) {
         console.log('Read ' + rows + ' rows');
         for (let i = 0; i < rows.length; i++) {
-            console.log(rows[i]);
+            console.log(rows[i]['mealType']);
         }
     })
     res.send('Updated!')
@@ -54,8 +54,8 @@ app.get('/webhook', (req, res) => {
             sessionId: messengerId
         });
         request2.on('response', function(response) {
-            console.log(response);
-            let result = response.result['mealType'];
+            //console.log(response);
+            let result = response.result;
             //change this to accomodate changes..
             if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
                 //food
