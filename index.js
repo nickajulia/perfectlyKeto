@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
     doc.getRows(1, {}, function(err, rows) {
         console.log('Read ' + rows + ' rows');
         for (let i = 0; i < rows.length; i++) {
-            console.log(rows[i]['mealType']);
+            console.log(rows[i]);
         }
     })
     res.send('Updated!')
@@ -80,4 +80,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.listen(process.env.PORT, () => console.log('App started!'));
+app.listen(process.env.PORT, () => console.log('App started!'));\
