@@ -60,20 +60,20 @@ app.get('/webhook', (req, res) => {
             sessionId: messengerId
         });
         request2.on('response', function(response) {
-            //console.log(response);
+            console.log(response);
             let result = response.result;
             //change this to accomodate changes..
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
-                //food
-                res.json({
-                    "redirect_to_blocks": ["Part of the diet"]
-                });
-            } else {
-                //not food
-                res.json({
-                    "redirect_to_blocks": ["Not part of the diet"]
-                })
-            }
+            // if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.intentName.includes('food')) {
+            //     //food
+            //     res.json({
+            //         "redirect_to_blocks": ["Part of the diet"]
+            //     });
+            // } else {
+            //     //not food
+            //     res.json({
+            //         "redirect_to_blocks": ["Not part of the diet"]
+            //     })
+            // }
         });
 
         request2.on('error', function(error) {
