@@ -73,13 +73,13 @@ app.get('/webhook', (req, res) => {
                     });
                 } else {
                     res.json({
-                        "redirect_to_blocks": ["Not sure"]
+                        "redirect_to_blocks": ["5a7c2831e4b06b7408f42599"]
                     });
                 }
 
             } else {
                 res.json({
-                    "redirect_to_blocks": ["Not sure"]
+                    "redirect_to_blocks": ["5a7c2831e4b06b7408f42599"]
                 });
             }
         });
