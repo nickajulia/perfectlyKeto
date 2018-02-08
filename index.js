@@ -63,7 +63,7 @@ app.get('/webhook', (req, res) => {
             console.log(response);
             let result = response.result;
             //change this to accomodate changes..
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.metadata.fulfillment) {
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
                 //food
                 res.json({
                     "messages": [
