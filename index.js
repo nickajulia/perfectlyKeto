@@ -52,6 +52,8 @@ app.get('/', (req, res) => {
     })
     res.send('Updated!');
 });
+
+/**
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
     let messengerId = req.query['messenger user id'];
@@ -96,6 +98,45 @@ app.get('/webhook', (req, res) => {
     }
 
 });
+*/
+
+app.get('/webhook', (req, res) => {
+    let userManuallyInputText = req.query['last user freeform input'];
+    let messengerId = req.query['messenger user id'];
+    if (userManuallyInputText) {
+        var request2 = apiApp.textRequest(userManuallyInputText, {
+            sessionId: messengerId
+        });
+        request2.on('response', function(response) {
+            console.log(response);
+            let result = response.result;
+            //change this to accomodate changes..
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
+                //food
+                if (result.fulfillment.speech != '') {
+                    res.json({
+                        "messages": [
+                            { "text": result.fulfillment.speech },
+                        ]
+                    });
+                } 
+
+            } 
+        });
+
+        request2.on('error', function(error) {
+            console.log(error);
+            res.sendStatus({
+                "redirect_to_blocks": ["Not sure"]
+            })
+
+        });
+        request2.end();
+
+    }
+
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
