@@ -66,14 +66,8 @@ app.get('/webhook', (req, res) => {
             let result = response.result;
             //change this to accomodate changes..
 
-             result.fulfillment.speech != '' {
-                    res.json({
-                        "messages": [
-                            { "text": result.fulfillment.speech },
-                        ]
-                    });
             
-            /**if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
+            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
                 //food
                 if (result.fulfillment.speech != '') {
                     res.json({
@@ -81,12 +75,7 @@ app.get('/webhook', (req, res) => {
                             { "text": result.fulfillment.speech },
                         ]
                     });
-                } else if (result.fulfillment.messages.redirect_to_blocks != '') {
-                    var cfBlock = redirect_to_blocks
-                    res.json({
-                        "redirect_to_blocks": ["Df fallback empty string"]
-                    });
-                } else {
+                }  else {
                     res.json({
                         "redirect_to_blocks": ["Df fallback empty string"]
                     });
@@ -97,7 +86,7 @@ app.get('/webhook', (req, res) => {
                     "redirect_to_blocks": ["Df fallback empty string"]
                 });
             }
-            */
+            
         });
 
         request2.on('error', function(error) {
