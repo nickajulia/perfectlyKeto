@@ -52,8 +52,8 @@ app.get('/', (req, res) => {
     })
     res.send('Updated!');
 });
+ 
 
-/**
 app.get('/webhook', (req, res) => {
     let userManuallyInputText = req.query['last user freeform input'];
     let messengerId = req.query['messenger user id'];
@@ -65,13 +65,19 @@ app.get('/webhook', (req, res) => {
             console.log(response);
             let result = response.result;
             //change this to accomodate changes..
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
+            
+            /**if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
                 //food
                 if (result.fulfillment.speech != '') {
                     res.json({
                         "messages": [
                             { "text": result.fulfillment.speech },
                         ]
+                    });
+                } else if (result.fulfillment.messages.redirect_to_blocks != '') {
+                    var cfBlock = redirect_to_blocks
+                    res.json({
+                        "redirect_to_blocks": ["Df fallback empty string"]
                     });
                 } else {
                     res.json({
@@ -84,6 +90,7 @@ app.get('/webhook', (req, res) => {
                     "redirect_to_blocks": ["Df fallback empty string"]
                 });
             }
+            */
         });
 
         request2.on('error', function(error) {
@@ -98,44 +105,7 @@ app.get('/webhook', (req, res) => {
     }
 
 });
-*/
 
-app.get('/webhook', (req, res) => {
-    let userManuallyInputText = req.query['last user freeform input'];
-    let messengerId = req.query['messenger user id'];
-    if (userManuallyInputText) {
-        var request2 = apiApp.textRequest(userManuallyInputText, {
-            sessionId: messengerId
-        });
-        request2.on('response', function(response) {
-            console.log(response);
-            let result = response.result;
-            //change this to accomodate changes..
-            if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
-                //food
-                if (result.fulfillment.speech != '') {
-                    res.json({
-                        "messages": [
-                            { "text": result.fulfillment.speech },
-                        ]
-                    });
-                } 
-
-            } 
-        });
-
-        request2.on('error', function(error) {
-            console.log(error);
-            res.sendStatus({
-                "redirect_to_blocks": ["Not sure"]
-            })
-
-        });
-        request2.end();
-
-    }
-
-});
 
 
 app.use(bodyParser.json());
