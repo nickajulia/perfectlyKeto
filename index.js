@@ -65,6 +65,13 @@ app.get('/webhook', (req, res) => {
             console.log(response);
             let result = response.result;
             //change this to accomodate changes..
+
+             result.fulfillment.speech != '' {
+                    res.json({
+                        "messages": [
+                            { "text": result.fulfillment.speech },
+                        ]
+                    });
             
             /**if (result && response.status && response.status.errorType == 'success' && result.metadata && result.fulfillment) {
                 //food
